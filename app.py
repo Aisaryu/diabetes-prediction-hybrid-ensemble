@@ -23,8 +23,6 @@ st.sidebar.header("Patient Health Indicators")
 st.sidebar.write("Adjust the parameters to see the real-time prediction.")
 
 # 3. Create interactive inputs for the user
-# Note: The CDC dataset has 21 features. For a clean UI, we highlight the most critical ones 
-# and set the rest to default medians, OR you can generate sliders for all of them.
 user_data = {}
 
 # Example of key interactive features (modify based on your feature names)
@@ -35,10 +33,10 @@ user_data['Smoker'] = st.sidebar.selectbox("Smoker (100+ cigarettes in life)", [
 user_data['Age'] = st.sidebar.slider("Age Category (1-13)", 1, 13, 5) # CDC uses 13-level age category
 user_data['GenHlth'] = st.sidebar.slider("General Health (1: Excellent -> 5: Poor)", 1, 5, 2)
 
-# Fill remaining features with default/median values to satisfy the model's 21-feature requirement
+# Fill remaining features with default/median values 
 for feature in feature_names:
     if feature not in user_data:
-        user_data[feature] = 0 # Replace 0 with the actual median of your dataset for better accuracy
+        user_data[feature] = 0 
 
 # 4. Predict Button
 if st.button("Predict Diabetes Risk", type="primary"):
@@ -52,7 +50,7 @@ if st.button("Predict Diabetes Risk", type="primary"):
     # Get Probability and Prediction
     probability = model.predict_proba(input_scaled)[0][1]
     
-    # Use your optimized threshold from your research (e.g., 0.35 instead of default 0.5)
+    # Use the optimized threshold from research
     OPTIMIZED_THRESHOLD = 0.35 
     prediction = 1 if probability >= OPTIMIZED_THRESHOLD else 0
 
