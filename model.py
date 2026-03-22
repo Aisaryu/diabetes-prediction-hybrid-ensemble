@@ -31,7 +31,7 @@ df = pd.read_csv(file_path)
 X_all_raw = df.drop('Diabetes_binary', axis=1)
 y_all = df['Diabetes_binary']
 
-# --- Subsampling for Thesis Feasibility ---
+# --- Subsampling ---
 if SAMPLE_SIZE is not None and len(df) > SAMPLE_SIZE:
     print(f"Subsampling to {SAMPLE_SIZE} for computational efficiency...")
     X_all_raw, _, y_all, _ = train_test_split(
