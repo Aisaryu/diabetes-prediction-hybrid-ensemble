@@ -51,7 +51,7 @@ if st.button("Predict Diabetes Risk", type="primary"):
     probability = model.predict_proba(input_scaled)[0][1]
     
     # Use the optimized threshold from research
-    OPTIMIZED_THRESHOLD = 0.35 
+    OPTIMIZED_THRESHOLD = 0.20 
     prediction = 1 if probability >= OPTIMIZED_THRESHOLD else 0
 
     # 5. Display Results
