@@ -5,7 +5,7 @@ import kagglehub
 import joblib # Added for saving the model
 from sklearn.model_selection import StratifiedKFold, GridSearchCV, train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.impute import SimpleImputer
+from sklearn.impute import KNNImputer
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from xgboost import XGBClassifier
 from sklearn.neighbors import NearestNeighbors
@@ -94,7 +94,7 @@ def save_final_model():
     print("--- Training final model on ALL data for deployment... ---")
     
     # 1. Prepare full data
-    imp = SimpleImputer(strategy='median')
+    imp = KNNImputer(n_neighbors=5)
     X_imp = imp.fit_transform(X_all_raw)
     
     scaler = StandardScaler()
